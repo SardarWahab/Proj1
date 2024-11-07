@@ -40,10 +40,11 @@ def contact():
     return render_template('contact.html')
 
 
-@app.route('/submit', methods=['POST'])
+@app.route('/submit/', methods=['POST'])
 def submit():
     username = request.form['username']
     email = request.form['email']
+    print(username,email)
     new_user = User(username=username, email=email)
     db.session.add(new_user)
     db.session.commit()
