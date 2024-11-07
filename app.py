@@ -1,5 +1,5 @@
 # save this as app.py
-from flask import Flask, render_template
+from flask import Flask, render_template,request,Response
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 app = Flask(__name__)
@@ -38,6 +38,17 @@ def about():
 @app.route("/contact")
 def contact():
     return render_template('contact.html')
+
+
+@app.route('/submit', methods=['POST'])
+def submit():
+    username = request.form['username']
+    email = request.form['email']
+    new_user = User(username=username, email=email)
+    db.session.add(new_user)
+    db.session.commit()
+    return Response('data has been saved')
+
 
 
 
