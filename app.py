@@ -49,5 +49,7 @@ def submit():
     db.session.add(new_user)
     db.session.commit()
     return Response('data has been saved')
+#print("hallo world")
+
 if __name__ == '__main__':
     app.run(debug=True)
