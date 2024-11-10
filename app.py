@@ -25,6 +25,9 @@ class Subject(db.Model):
         id = db.Column(db.Integer, primary_key=True)
         subject_name = db.Column(db.String(20), nullable=False)
         subject_code = db.Column(db.String(20), nullable=False)
+
+
+
 @app.route("/")
 def hello():
     return render_template('index.html')
@@ -44,7 +47,6 @@ def contact():
 def submit():
     username = request.form['username']
     email = request.form['email']
-    print(username,email)
     new_user = User(username=username, email=email)
     db.session.add(new_user)
     db.session.commit()
